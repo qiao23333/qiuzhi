@@ -20,6 +20,12 @@ export default function EnvelopeIntro({ onDone }: { onDone: () => void }) {
   const phaseRef = useRef<Phase>('closed');
   const update = (next: Phase) => { phaseRef.current = next; setPhase(next); };
 
+  useEffect(() => {
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, []);
+
   const expand = () => {
     if (phaseRef.current === 'expand') return;
     const rect = letter.current?.getBoundingClientRect();
