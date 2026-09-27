@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.next/
+.wrangler/
+_inspect/
+debug.log
+*.local
+.env
+.env.*
+!.env.example
