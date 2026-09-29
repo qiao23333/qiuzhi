@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Canvas, extend, useFrame } from '@react-three/fiber';
+import { Canvas, extend, useFrame, events as createEvents } from '@react-three/fiber';
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
@@ -16,10 +16,6 @@ import './lanyard.css';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-// 1x1 transparent pixel — lets useTexture be called unconditionally when a
-// front/back image isn't supplied.
-const BLANK_PIXEL =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
 // The card model's front face is UV-mapped to the LEFT half of the texture
 // atlas and the back face to the RIGHT half (measured from card.glb). Each
@@ -37,19 +33,31 @@ export default function Lanyard({
   backImage = null,
   imageFit = 'cover',
   lanyardImage = null,
-  lanyardWidth = 1
+  lanyardWidth = 0.7
 }) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
   useEffect(() => {
+    const surface = document.querySelector('.ref-about');
+    const stopImageDrag = (event) => event.preventDefault();
+    surface?.addEventListener('dragstart', stopImageDrag);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => { window.removeEventListener('resize', handleResize); surface?.removeEventListener('dragstart', stopImageDrag); };
   }, []);
 
   return (
     <div className="lanyard-wrapper">
       <Canvas
+        eventSource={document.querySelector('.ref-about') || undefined}
+        events={(state) => ({
+          ...createEvents(state),
+          compute: (event, current) => {
+            const rect = current.gl.domElement.getBoundingClientRect();
+            current.pointer.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
+            current.raycaster.setFromCamera(current.pointer, current.camera);
+          },
+        })}
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: transparent }}
@@ -131,8 +139,8 @@ function Band({
   const texture = useTexture(lanyardImage || lanyard);
   // useTexture must be called unconditionally; use a blank pixel when an image
   // isn't supplied for a given face, then skip compositing it below.
-  const frontTex = useTexture(frontImage || BLANK_PIXEL);
-  const backTex = useTexture(backImage || BLANK_PIXEL);
+  const frontTex = useTexture(frontImage || sitePath('/assets/lanyard/card-atlas.png'));
+  const backTex = useTexture(backImage || sitePath('/assets/lanyard/card-atlas.png'));
 
   // Composite the front/back images into the card's texture atlas (front = left
   // half, back = right half). Each image is drawn aspect-preserving (no stretch).
@@ -265,6 +273,9 @@ function Band({
               <meshPhysicalMaterial
                 map={cardMap}
                 map-anisotropy={16}
+                alphaTest={0.45}
+                transparent={false}
+                depthWrite={true}
                 clearcoat={isMobile ? 0 : 1}
                 clearcoatRoughness={0.15}
                 roughness={0.9}
@@ -284,8 +295,8 @@ function Band({
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
           useMap
           map={texture}
-          repeat={[-4, 1]}
-          lineWidth={lanyardWidth}
+          repeat={[-0.65, 1]}
+          lineWidth={lanyardWidth * (isMobile ? 0.55 : 1)}
         />
       </mesh>
     </>
