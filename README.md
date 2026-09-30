@@ -4,7 +4,7 @@
 
 ## 页面
 
-- `/`：问候、花坡电脑和镜头推入 About；支持 Skip
+- `/`：Remotion 信封开场：封印抬起、翻盖、抽出信纸、接入 About；支持跳过与 Escape
 - `/about`：个人介绍与工牌
 - `/projects`：个人项目 / 初创公司两级目录
 - `/projects/snapsort`、`/projects/compliance-guardian`、`/projects/xuanlan`：个人项目案例
@@ -35,4 +35,6 @@ GitHub Pages 通过 `.github/workflows/pages.yml` 发布，构建命令为 `npm 
 - 毕业学校、专业及简历 PDF 未提供，页面未编造。
 - 澳达案例使用已有成品与脱敏截图，视频可在网页内播放。上线前仍需对每张公司素材作最后一轮公开范围核对。
 - SnapSort 效率数字、合规卫士检测指标尚无可公开核验的同口径证据，页面未展示具体数字。
-- 当前开屏参考用户视频的镜头顺序，场景图为原创生成素材，仍需用户审阅视觉与文案。
+- 当前开屏采用 Remotion 帧动画，浏览器直接播放；可用 npm run motion 在 Studio 中查看横屏、竖屏两个版本。
+
+2026-09-30：Work 改为双分类封面与简洁项目入口；案例添加界面缩略图、完整图片放大和视频播放器；开屏末段再启动工牌以减少同时渲染的负担。Remotion 源码在 app/intro-film.tsx，预览入口为 remotion/index.tsx。

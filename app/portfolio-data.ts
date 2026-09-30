@@ -29,7 +29,7 @@ export const personalProjects: PersonalProject[] = [
   {
     slug: 'snapsort',
     name: 'SnapSort',
-    subtitle: '让散乱图片重新变得可用',
+    subtitle: '本地 AI 图片整理工具',
     category: '本地 AI 素材整理工具 · 主推项目',
     summary: '从一次真实的素材整理任务出发，做出按内容或事件组织图片的本地工作台，并把命名、搜索、查重和复核接成完整流程。',
     image: sitePath('/portfolio/snapsort.webp'),
@@ -67,7 +67,7 @@ export const personalProjects: PersonalProject[] = [
   {
     slug: 'compliance-guardian',
     name: '合规卫士',
-    subtitle: '把发布前的风险检查变成可追溯流程',
+    subtitle: '发布前的文案检查工具',
     category: '内容合规工具 · 个人项目',
     summary: '将行业红线、平台差异和账号类型放进同一次本地检测；每个提示都能回到规则依据，AI 只参与改写建议。',
     image: sitePath('/portfolio/guardian.webp'),
@@ -105,7 +105,7 @@ export const personalProjects: PersonalProject[] = [
   {
     slug: 'xuanlan',
     name: '玄览',
-    subtitle: '一次关于多体系聚合与可复现结果的实验',
+    subtitle: '多体系结果聚合实验',
     category: '交互与系统实验 · 个人项目',
     summary: '把多个结构不同的结果映射到共同的比较维度，让共识、分歧与低样本的不确定性可以被看见。',
     image: sitePath('/portfolio/xuanlan.webp'),

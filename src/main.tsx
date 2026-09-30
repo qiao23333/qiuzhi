@@ -1,13 +1,14 @@
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import EditorialPortfolio from '../app/editorial-pages';
-import EnvelopeIntro from '../app/envelope-intro';
+const EnvelopeIntro = lazy(() => import('../app/envelope-intro'));
 import type { EditorialView } from '../app/editorial-pages';
 import { currentRoute, sitePath } from '../app/site-path';
 import '../app/globals.css';
 import '../app/editorial.css';
 import '../app/about-reference.css';
 import '../app/case-reference.css';
+import '../app/portfolio-refinement.css';
 
 const routeViews: Record<string, EditorialView> = {
   '/about': 'about',
@@ -23,9 +24,10 @@ const path = currentRoute();
 
 function App() {
   const [intro, setIntro] = useState(path === '/');
-  const done = useCallback(() => { window.history.replaceState(null, '', sitePath('/about')); setIntro(false); }, []);
-  if (intro) return <><div inert><EditorialPortfolio view="about" /></div><EnvelopeIntro onDone={done} /></>;
-  return <EditorialPortfolio view={routeViews[path] ?? 'about'} />;
+  const [effects, setEffects] = useState(path !== '/');
+  const reveal = useCallback(() => setEffects(true), []);
+  const done = useCallback(() => { window.history.replaceState(null, '', sitePath('/about')); setEffects(true); setIntro(false); }, []);
+  return <><div inert={intro || undefined}><EditorialPortfolio view={routeViews[path] ?? 'about'} effects={effects} /></div>{intro && <Suspense fallback={<div className="intro-loading"><button onClick={done}>跳过 ↗</button></div>}><EnvelopeIntro onDone={done} onReveal={reveal} /></Suspense>}</>;
 }
 
 createRoot(document.getElementById('root')!).render(<App />);
