@@ -1,5 +1,6 @@
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { CSSProperties } from 'react';
+import { sitePath } from './site-path';
 export const INTRO_FRAMES = 204;
 const opts = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(.22, 1, .36, 1) } as const;
 export function IntroFilm() {
@@ -15,8 +16,8 @@ export function IntroFilm() {
   const translate = (height / 2 - (top - 57 * fit)) * push;
   const envelopeStyle: CSSProperties = {
     position: 'absolute', width: 760, height: 440, left: width / 2 - 380, top,
-    transformOrigin: '50% -57px',
-    transform: `translateY(${translate + interpolate(f, [0, 43], [54, 0], opts)}px) scale(${fit * (1 + push * (finalScale - 1))}) rotate(${interpolate(f, [0, 132], [-9, 0], opts)}deg)`,
+    transformOrigin: '50% -57px', transformStyle:'preserve-3d',
+    transform: `translateY(${translate + interpolate(f, [0, 43], [54, 0], opts)}px) scale(${fit * (1 + push * (finalScale - 1))}) perspective(1800px) rotateX(${interpolate(f,[0,50,138,190],[27,12,0,0],opts)}deg) rotateY(${interpolate(f,[0,110,175],[-15,4,0],opts)}deg) rotate(${interpolate(f, [0, 132], [-13, 0], opts)}deg)`,
     opacity: interpolate(f, [0, 21], [0, 1], opts),
   };
   return <AbsoluteFill className="letter-film" data-frame={f} style={{ opacity: interpolate(f, [187, 203], [1, 0], opts) }}>
@@ -39,7 +40,7 @@ export function IntroFilm() {
         <div className="letter-film__bottom"><span>PORTFOLIO</span><small>WKQ / 2026</small></div><div className="letter-film__grain" />
       </div>
       <div className="letter-film__seal" style={{ opacity: interpolate(f, [41, 64], [1, 0], opts), transform: `translateY(${interpolate(f, [35, 68], [0, -55], opts)}px) scale(${interpolate(f, [35, 68], [1, 1.28], opts)}) rotate(${interpolate(f, [35, 68], [-8, 12], opts)}deg)` }}>
-        <div className="letter-film__seal-rim"><span>W</span><i>K</i></div><div className="letter-film__seal-glint" style={{ transform: `translateX(${interpolate(f, [16, 43], [-130, 180], opts)}%) rotate(30deg)` }} />
+        <img src={sitePath('/portfolio/letter-seal.webp')} alt="" /><div className="letter-film__seal-glint" style={{ transform: `translateX(${interpolate(f, [16, 43], [-130, 180], opts)}%) rotate(30deg)` }} />
       </div>
     </div><div className="letter-film__vignette" style={{ opacity: 1 - push }} />
   </AbsoluteFill>;

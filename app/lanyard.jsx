@@ -25,6 +25,7 @@ const FRONT_UV_RECT = { x: 0, y: 0, w: 0.5, h: 0.755 };
 const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 };
 
 export default function Lanyard({
+  onReady,
   position = [0, 0, 30],
   gravity = [0, -40, 0],
   fov = 20,
@@ -59,13 +60,14 @@ export default function Lanyard({
           },
         })}
         camera={{ position: position, fov: fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
+        dpr={[1, 1.25]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
           <Band
+            onReady={onReady}
             isMobile={isMobile}
             frontImage={frontImage}
             backImage={backImage}
@@ -109,6 +111,7 @@ export default function Lanyard({
   );
 }
 function Band({
+  onReady,
   maxSpeed = 50,
   minSpeed = 0,
   isMobile = false,
@@ -118,6 +121,7 @@ function Band({
   lanyardImage = null,
   lanyardWidth = 1
 }) {
+  const renderedFrames = useRef(0);
   const band = useRef(),
     fixed = useRef(),
     j1 = useRef(),
@@ -211,6 +215,7 @@ function Band({
   }, [hovered, dragged]);
 
   useFrame((state, delta) => {
+    if (++renderedFrames.current === 8) onReady?.();
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();

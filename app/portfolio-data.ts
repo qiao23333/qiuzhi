@@ -154,7 +154,7 @@ export type CompanyChapter = {
 export const companyChapters: CompanyChapter[] = [
   {
     id: 'content', number: '01', title: '内容与新媒体', english: 'CONTENT',
-    short: '把复杂业务翻译成用户愿意看、看得懂的内容。',
+    short: '老板 IP 口播、小红书图文、公众号内容与账号呈现。',
     detail: '围绕用户疑问与业务口径，参与账号定位、选题和用户画像，制作老板 IP 口播、图文与公众号内容，并逐步整理可复用的内容素材。',
     impact: '初创阶段缺少现成的内容体系，先让“对谁说、说什么、怎样说”有一个可执行的起点。',
     deliverables: ['短视频口播与账号内容', '小红书图文与封面', '公众号内容与账号呈现'],
@@ -168,7 +168,7 @@ export const companyChapters: CompanyChapter[] = [
   },
   {
     id: 'brand', number: '02', title: '品牌与物料', english: 'BRAND',
-    short: '让公司第一次对外介绍自己时，有完整、统一的表达。',
+    short: '三折页、合作资料、品牌视觉与统一文案。',
     detail: '围绕业务介绍和品牌主视觉，参与梳理公司介绍、三折页双面内容、线上线下物料与合作展示材料。将不同场景需要的内容放进同一套视觉和信息口径。',
     impact: '从零散的业务描述走向可交付的品牌材料，让团队在介绍公司时有共同的版本。',
     deliverables: ['公司宣传三折页', '品牌视觉与文案规范', '合作介绍物料'],
@@ -176,26 +176,26 @@ export const companyChapters: CompanyChapter[] = [
     media: [
       { label: '三折页正面', src: sitePath('/portfolio/aoda-brochure.webp'), alt: '公司宣传三折页正面' },
       { label: '三折页背面', src: sitePath('/portfolio/aoda-brochure-back.webp'), alt: '公司宣传三折页背面' },
-      { label: '橱窗资料包', src: sitePath('/portfolio/aoda-shop-kit.webp'), alt: '资料包橱窗封面' },
+      
     ], tools: ['photoshop', 'illustrator', 'gpt'],
   },
   {
     id: 'live', number: '03', title: '直播与现场', english: 'LIVE',
-    short: '把直播从一场临时活动，整理成能重复运行的现场。',
-    detail: '负责直播设备与 OBS 场景准备、平台联调、直播间贴片和现场素材切换；围绕讲座式直播整理讲解顺序与展示材料。',
+    short: '设备、直播画面、贴片和多平台现场执行。',
+    detail: '早期完成布景、设备调试、OBS 多平台推流、贴片制作和现场中控。随后因素材声音与连麦限制，改用抖音直播助手作为画面源，通过虚拟屏与投屏实现多平台直播，并对接单反与灯光设备升级。',
     impact: '团队有了一套可反复使用的直播画面与执行方式，内容现场不再完全依靠临时拼接。',
     deliverables: ['直播间视觉贴片', 'OBS 场景与设备联调', '讲解与展示素材'],
     image: sitePath('/portfolio/aoda-live.webp'), imageAlt: '澳达官方号直播背景与组件预览',
     media: [
       { label: '直播画面', src: sitePath('/portfolio/aoda-live.webp'), alt: '官方号直播背景与贴片预览' },
       { label: '沙龙贴片', src: sitePath('/portfolio/aoda-live-boss.webp'), alt: '老板直播间沙龙贴片' },
-      { label: '资格评估', src: sitePath('/portfolio/aoda-shop.webp'), alt: '资格评估商品封面' },
+      
     ], tools: ['jianying', 'photoshop', 'gpt'],
   },
   {
-    id: 'crm', number: '04', title: '线索与 CRM', english: 'OPERATIONS',
-    short: '让线索有入口、有记录、有负责人和下一步。',
-    detail: '从没有统一客户资料和跟进方式的状态出发，独立搭建飞书 CRM 基础结构：线索池、客户信息、跟进记录、来源与项目分类，并建立新增线索自动提醒负责人的流程。',
+    id: 'crm', number: '04', title: '获客与 CRM', english: 'OPERATIONS',
+    short: '表单收集、来源追踪、意向分级与负责人提醒。',
+    detail: '从没有统一客户资料和跟进方式的状态出发，独立搭建飞书 CRM 基础结构：按渠道、业务项目和跟进阶段组织客户记录，设置 A/B/C 意向分级。公众号表单收集线索后自动写入线索池，并提醒对应负责人；后续持续补充沟通记录。',
     impact: '线索从不同渠道进入后，团队能在同一处查看、分配和持续跟进。',
     deliverables: ['飞书 CRM 基础结构', '线索归集与分配字段', '自动提醒工作流'],
     image: sitePath('/portfolio/aoda-crm.webp'), imageAlt: '已裁去账号信息的飞书 CRM 工作流界面',
@@ -205,16 +205,16 @@ export const companyChapters: CompanyChapter[] = [
     ], tools: ['feishu', 'gpt'],
   },
   {
-    id: 'systems', number: '05', title: '知识与 AI 工作流', english: 'SYSTEMS',
-    short: '把反复解释和临时找资料，变成可复用的工作基础。',
+    id: 'systems', number: '05', title: '业务知识与 AI', english: 'SYSTEMS',
+    short: '业务问答、内容口径与内部资料结构。',
     detail: '参与业务问答、内容口径和内部资料的结构化整理，再尝试将 AI 用在信息梳理、内容草稿与线索分析等有清晰人工复核环节的流程里。',
     impact: '新同事与内容协作可以从整理过的资料开始，而不是每次从散落的聊天记录里重新寻找答案。',
     deliverables: ['业务问题与资料框架', '可复用的内容口径', 'AI 辅助整理与复核流程'],
     image: sitePath('/portfolio/aoda-qa.webp'), imageAlt: '雇主担保移民与企业出海业务问答脑图',
     media: [
       { label: '业务问答结构', src: sitePath('/portfolio/aoda-qa.webp'), alt: '业务问答脑图' },
-      { label: '资料橱窗', src: sitePath('/portfolio/aoda-shop-kit.webp'), alt: '业务资料包橱窗封面' },
-      { label: '内容示例', src: sitePath('/portfolio/aoda-xhs-2.webp'), alt: '小红书图文封面' },
+      
+      
     ], tools: ['feishu', 'gpt', 'wechat'],
   },
 ];

@@ -13,13 +13,15 @@ export default function EnvelopeIntro({ onDone, onReveal }: { onDone: () => void
     const escape = (e: KeyboardEvent) => { if (e.key === 'Escape') onDone(); };
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) onDone();
     const instance = player.current;
-    const reveal = ({ detail }: { detail: { frame: number } }) => { if (detail.frame >= 177) onReveal(); };
+    const finishTimer=window.setTimeout(onDone, (INTRO_FRAMES / 30) * 1000 + 1200);
+    const reveal = ({ detail }: { detail: { frame: number } }) => { if (detail.frame >= 115) onReveal(); };
     instance?.addEventListener('ended', onDone);
     instance?.addEventListener('frameupdate', reveal);
     window.addEventListener('resize', resize);
     window.addEventListener('keydown', escape);
     return () => {
       document.body.style.overflow = previous;
+      window.clearTimeout(finishTimer);
       instance?.removeEventListener('ended', onDone);
       instance?.removeEventListener('frameupdate', reveal);
       window.removeEventListener('resize', resize);
