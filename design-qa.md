@@ -20,3 +20,4 @@ IAB inspection timed out; captures and interactions were performed with the inst
 
 ## Outstanding evidence
 AI workflow is supported by business knowledge and content-structure materials. A full operation recording with input, AI processing, manual review and output is still needed for stronger case evidence. Client CRM rows were excluded; existing cropped workflow and guide images remain.
+The final 1366 × 768 recheck covered all three personal cases: document height 768 px, chapter bottom 683.53 px, no overflow. The video collection includes all three videos. Long images now support a separately verified reading zoom with scroll, fit-to-screen toggle and Escape dismissal.

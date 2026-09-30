@@ -72,16 +72,18 @@ function Work() { return <WorkOverview />; }
 
 function Zoom({ src, alt, close }: { src: string; alt: string; close: () => void }) {
   const closeButton = useRef<HTMLButtonElement>(null);
+  const [enlarged,setEnlarged]=useState(false);
+  const zoomDialog=useRef<HTMLDivElement>(null);
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     closeButton.current?.focus();
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') close(); if (event.key === 'Tab') { event.preventDefault(); closeButton.current?.focus(); } };
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') close(); if (event.key === 'Tab') { const controls=Array.from(zoomDialog.current?.querySelectorAll<HTMLButtonElement>('button') ?? []);const first=controls[0],last=controls[controls.length-1];if(event.shiftKey && document.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first?.focus();} } };
     window.addEventListener('keydown', onKey);
     return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = overflow; previous?.focus(); };
   }, [close]);
-  return <div className="v3-zoom" role="dialog" aria-modal="true" aria-label={alt} onClick={close}><button ref={closeButton} onClick={close} aria-label="关闭大图"><X size={21} /></button><img src={src} alt={alt} onClick={(event) => event.stopPropagation()} /></div>;
+  return <div ref={zoomDialog} className={`v3-zoom ${enlarged ? 'is-enlarged' : ''}`} role="dialog" aria-modal="true" aria-label={alt}><button ref={closeButton} onClick={close} aria-label="关闭大图"><X size={21} /></button><button className="zoom-size" onClick={()=>setEnlarged(!enlarged)}>{enlarged ? '适合屏幕' : '放大阅读'}</button><div className="zoom-viewport" onClick={close}><img src={src} alt={alt} onClick={(event) => {event.stopPropagation();setEnlarged(!enlarged);}} /></div></div>;
 }
 
 function PersonalCase({ project }: { project: PersonalProject }) {
@@ -129,9 +131,9 @@ function CompanyCase() {
   const [collection,setCollection]=useState('全部');
   const [zoom, setZoom] = useState<string | null>(null);
   const chapter: CompanyChapter = companyChapters[active];
-  const materials = [...chapter.media, ...library.filter(m=>m.group===chapter.id).map(m=>({...m,src:sitePath(m.src),kind:('kind' in m?m.kind:undefined) as 'video'|undefined}))];
+  const materials = [...chapter.media.map(m=>({...m,collection:m.kind==='video'?'视频':chapter.id==='content'?(m.label.includes('小红书')?'小红书':m.label.includes('公众号')?'公众号':'账号'):chapter.id==='brand'?'三折页':chapter.id==='crm'?'CRM':chapter.id==='live'?'直播贴片':'资料结构'})), ...library.filter(m=>m.group===chapter.id).map(m=>({...m,src:sitePath(m.src),kind:('kind' in m?m.kind:undefined) as 'video'|undefined}))];
   const visibleMaterials = materials.map((m,i)=>({...m,index:i})).filter(m=>collection==='全部' || ('collection' in m && m.collection===collection) || (collection==='精选' && m.index<chapter.media.length));
-  const collections = ['精选',...new Set(library.filter(m=>m.group===chapter.id).map(m=>m.collection))];
+  const collections = ['精选',...new Set(materials.map(m=>m.collection))];
   const current = materials[media] ?? materials[0];
   const poster = 'poster' in current ? sitePath(String(current.poster)) : sitePath('/portfolio/aoda-video.webp');
   const change = (next: number) => { setActive(next); setMedia(0); setCollection('全部'); history.replaceState(null, '', `#${companyChapters[next].id}`); };
