@@ -4,12 +4,6 @@ import EditorialPortfolio from '../app/editorial-pages';
 const EnvelopeIntro = lazy(() => import('../app/envelope-intro'));
 import type { EditorialView } from '../app/editorial-pages';
 import { currentRoute, sitePath } from '../app/site-path';
-import '../app/globals.css';
-import '../app/editorial.css';
-import '../app/about-reference.css';
-import '../app/case-reference.css';
-import '../app/portfolio-refinement.css';
-import '../app/cohesion.css';
 import '../app/desk-scene.css';
 
 const routeViews: Record<string, EditorialView> = {

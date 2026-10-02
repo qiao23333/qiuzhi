@@ -3,6 +3,7 @@ import WorkOverview from './work-overview';
 import DeskContact from './desk-contact';
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronLeft, ChevronRight, Copy, Clapperboard, Palette, Radio, Workflow, BookOpen, ExternalLink, Mail, Phone, X } from 'lucide-react';
 import { companyChapters, personalProjects, toolMeta } from './portfolio-data';
 import type { CompanyChapter, PersonalProject, ToolId } from './portfolio-data';
@@ -39,7 +40,6 @@ function Nav({ view }: { view: EditorialView }) {
       <a href={sitePath('/projects')} aria-current={view === 'projects' || personalProjects.some((p) => p.slug === view) || view === 'aoda' ? 'page' : undefined}>Work</a>
       <a href={sitePath('/contact')} aria-current={view === 'contact' ? 'page' : undefined}>Contact</a>
     </nav>
-    <span className="v3-nav__side">王康桥　/　2026</span>
   </header>;
 }
 
@@ -61,7 +61,7 @@ function About({ effects = true }: { effects?: boolean }) {
       <img className="ref-about__book" src={sitePath('/portfolio/scene/binder.webp')} alt="" />
       <LanyardBadge active={effects} />
       <div className="ref-about__heading"><small>01 / PERSONAL FILE</small><h1>ABOUT ME</h1><span>CONTENT　/　PRODUCT　/　AI WORKFLOW</span></div>
-      <div className="ref-about__intro"><strong>HI! I'M WANG KANGQIAO.</strong><p>你好，我是王康桥。做过内容、投流和品牌物料，也会把工作里遇到的问题做成工具。</p><p>2026 年 6 月毕业，目前寻找能把这些经验放进实际业务的机会。</p></div>
+      <div className="ref-about__intro"><strong>你好，我是王康桥。</strong><p>内容运营、品牌物料、AI 工具与工作流。</p><p>2026 年 6 月毕业，正在寻找新的工作机会。</p></div>
       <div className="ref-about__experience"><h2>Experience</h2><div><b>星航传媒</b><time>2025.09 — 2026.05</time><p>新媒体运营与投流专员实习。</p></div><div><b>澳达因私出入境</b><time>2026.05 — 2026.09</time><p>参与内容、品牌和内部流程的搭建。</p></div></div>
       <div className="ref-about__polaroid"><img src={sitePath('/portfolio/avatar.webp')} alt="王康桥的博客头像" /><span>WANG KANGQIAO</span></div>
       <a className="ref-about__next" href={sitePath('/projects')}>VIEW WORK <ArrowUpRight size={22} /></a>
@@ -84,7 +84,7 @@ function Zoom({ src, alt, close }: { src: string; alt: string; close: () => void
     window.addEventListener('keydown', onKey);
     return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = overflow; previous?.focus(); };
   }, [close]);
-  return <div ref={zoomDialog} className={`v3-zoom ${enlarged ? 'is-enlarged' : ''}`} role="dialog" aria-modal="true" aria-label={alt}><button ref={closeButton} onClick={close} aria-label="关闭大图"><X size={21} /></button><button className="zoom-size" onClick={()=>setEnlarged(!enlarged)}>{enlarged ? '适合屏幕' : '放大阅读'}</button><div className="zoom-viewport" onClick={close}><img src={src} alt={alt} onClick={(event) => {event.stopPropagation();setEnlarged(!enlarged);}} /></div></div>;
+  return createPortal(<div ref={zoomDialog} className={`v3-zoom ${enlarged ? 'is-enlarged' : ''}`} role="dialog" aria-modal="true" aria-label={alt}><button ref={closeButton} onClick={close} aria-label="关闭大图"><X size={21} /></button><button className="zoom-size" onClick={()=>setEnlarged(!enlarged)}>{enlarged ? '适合屏幕' : '放大阅读'}</button><div className="zoom-viewport" onClick={close}><img src={src} alt={alt} onClick={(event) => {event.stopPropagation();setEnlarged(!enlarged);}} /></div></div>,document.body);
 }
 
 function PersonalCase({ project }: { project: PersonalProject }) {

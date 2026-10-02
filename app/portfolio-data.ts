@@ -32,8 +32,8 @@ export const personalProjects: PersonalProject[] = [
     subtitle: '本地 AI 图片整理工具',
     category: '本地 AI 素材整理工具 · 主推项目',
     summary: '从一次真实的素材整理任务出发，做出按内容或事件组织图片的本地工作台，并把命名、搜索、查重和复核接成完整流程。',
-    image: sitePath('/portfolio/snapsort.webp'),
-    imageAlt: 'SnapSort 桌面应用的真实界面',
+    image: sitePath('/portfolio/snapsort-sort.webp'),
+    imageAlt: 'SnapSort 智能分类的真实界面',
     accent: '#4779c8',
     tools: ['pycharm', 'gpt'],
     links: [

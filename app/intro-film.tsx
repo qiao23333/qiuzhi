@@ -11,7 +11,7 @@ export function IntroFilm() {
   const open = interpolate(f, [49, 91], [0, 178], opts);
   const pull = interpolate(f, [87, 137], [0, 278], opts);
   const push = interpolate(f, [143, 190], [0, 1], opts);
-  const finalScale = Math.max(width / (690 * fit), height / (406 * fit)) * 1.18;
+  const finalScale = Math.max(width / (650 * fit), height / (360 * fit)) * 1.18;
   const top = height * .56 - 220 * fit;
   const translate = (height / 2 - (top - 57 * fit)) * push;
   const envelopeStyle: CSSProperties = {
