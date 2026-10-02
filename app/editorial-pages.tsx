@@ -1,5 +1,6 @@
 import LanyardBadge from './lanyard-badge';
 import WorkOverview from './work-overview';
+import DeskContact from './desk-contact';
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronLeft, ChevronRight, Copy, Clapperboard, Palette, Radio, Workflow, BookOpen, ExternalLink, Mail, Phone, X } from 'lucide-react';
@@ -32,11 +33,11 @@ const labels: Record<string, string> = {
 
 function Nav({ view }: { view: EditorialView }) {
   return <header className="v3-nav">
-    <a className="v3-logo" href={sitePath('/')} aria-label="王康桥，返回个人介绍">WKQ<span>.</span></a>
+    <a className="v3-logo" href={sitePath('/')} aria-label="王康桥，返回个人介绍">王康桥</a>
     <nav aria-label="主导航">
-      <a href={sitePath('/about')} aria-current={view === 'about' ? 'page' : undefined}>ABOUT</a>
-      <a href={sitePath('/projects')} aria-current={view === 'projects' || personalProjects.some((p) => p.slug === view) || view === 'aoda' ? 'page' : undefined}>WORK</a>
-      <a href={sitePath('/contact')} aria-current={view === 'contact' ? 'page' : undefined}>CONTACT</a>
+      <a href={sitePath('/about')} aria-current={view === 'about' ? 'page' : undefined}>About</a>
+      <a href={sitePath('/projects')} aria-current={view === 'projects' || personalProjects.some((p) => p.slug === view) || view === 'aoda' ? 'page' : undefined}>Work</a>
+      <a href={sitePath('/contact')} aria-current={view === 'contact' ? 'page' : undefined}>Contact</a>
     </nav>
     <span className="v3-nav__side">王康桥　/　2026</span>
   </header>;
@@ -57,7 +58,7 @@ function BottomLink({ href, text }: { href: string; text: string }) {
 function About({ effects = true }: { effects?: boolean }) {
   return <section className="ref-about">
     <div className="ref-about__spread">
-      <img className="ref-about__book" src={sitePath('/portfolio/about-binder.png')} alt="" />
+      <img className="ref-about__book" src={sitePath('/portfolio/scene/binder.webp')} alt="" />
       <LanyardBadge active={effects} />
       <div className="ref-about__heading"><small>01 / PERSONAL FILE</small><h1>ABOUT ME</h1><span>CONTENT　/　PRODUCT　/　AI WORKFLOW</span></div>
       <div className="ref-about__intro"><strong>HI! I'M WANG KANGQIAO.</strong><p>你好，我是王康桥。做过内容、投流和品牌物料，也会把工作里遇到的问题做成工具。</p><p>2026 年 6 月毕业，目前寻找能把这些经验放进实际业务的机会。</p></div>
@@ -153,24 +154,7 @@ function CompanyCase() {
   </div>;
 }
 
-function Contact() {
-  const [hover, setHover] = useState(false);
-  const [pinned, setPinned] = useState(() => new URLSearchParams(window.location.search).has('open'));
-  const [copied, setCopied] = useState(false);
-  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const open = hover || pinned;
-  const enter = () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) setHover(true); };
-  const leave = () => { leaveTimer.current = setTimeout(() => setHover(false), 220); };
-  useEffect(() => () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); }, []);
-  const copy = async () => { try { await navigator.clipboard.writeText('1162393961@qq.com'); setCopied(true); window.setTimeout(() => setCopied(false), 1800); } catch { window.location.href = 'mailto:1162393961@qq.com'; } };
-  return <div className={`v3-contact ${open ? 'is-open' : ''}`}>
-    <div className="v3-contact__art" aria-hidden="true"><img src={sitePath('/portfolio/booth-closed.png')} alt="" /><img src={sitePath('/portfolio/booth-open.png')} alt="" /></div>
-    <div className="v3-contact__hints" aria-hidden="true"><span>Telephone<br /><small>193 2874 ****</small></span><span>Email<br /><small>116239****@qq.com</small></span></div>
-    <div className="v3-wrap"><Edge left="04 / CONTACT" right="OPEN A CONVERSATION" /><div className="v3-contact__body"><div className="v3-contact__copy" onMouseEnter={enter} onMouseLeave={leave}><span>CONTACT / 王康桥</span><h1>联系我<span>.</span></h1><p>有合适的岗位或项目，欢迎直接联系。</p><div className="v3-contact__links" aria-hidden={!open}><a tabIndex={open ? 0 : -1} href="tel:+8619328749431"><Phone size={18} /><span>电话</span><strong>193 2874 9431</strong><ArrowUpRight size={18} /></a><div><Mail size={18} /><span>邮箱</span><a tabIndex={open ? 0 : -1} href="mailto:1162393961@qq.com">1162393961@qq.com</a><button tabIndex={open ? 0 : -1} onClick={copy} aria-label="复制邮箱">{copied ? <Check size={18} /> : <Copy size={18} />}</button></div><a tabIndex={open ? 0 : -1} href="https://github.com/qiao23333" target="_blank" rel="noreferrer"><span>GitHub</span><strong>qiao23333</strong><ArrowUpRight size={18} /></a><a tabIndex={open ? 0 : -1} href="https://qiaozt.pages.dev/" target="_blank" rel="noreferrer"><span>博客</span><strong>qiaozt.pages.dev</strong><ArrowUpRight size={18} /></a></div></div><button className="v3-contact__booth-hit" onMouseEnter={enter} onMouseLeave={leave} onFocus={() => setHover(true)} onBlur={() => setHover(false)} onClick={() => { setPinned(!pinned); setHover(false); }} aria-label={open ? '关闭电话亭' : '打开电话亭'} aria-pressed={open}></button></div><div className="v3-contact__foot"><a href={sitePath('/projects')}><ArrowLeft size={16} /> 返回作品</a><span>WKQ / 2026</span></div></div>
-  </div>;
-}
-
 export default function EditorialPortfolio({ view, effects = true }: { view: EditorialView; effects?: boolean }) {
   const project = personalProjects.find((item) => item.slug === view);
-  return <div className="v3-shell"><Nav view={view} /><main className="v3-main" key={view}>{view === 'about' ? <About effects={effects} /> : view === 'projects' ? <Work /> : view === 'aoda' ? <CompanyCase /> : view === 'contact' ? <Contact /> : project ? <PersonalCase project={project} /> : <About effects={effects} />}</main></div>;
+  return <div className={`v3-shell desk-shell desk-shell--${view}`}><div className="desk-backdrop" aria-hidden="true"/><Nav view={view} /><main className="v3-main" key={view}>{view === 'about' ? <About effects={effects} /> : view === 'projects' ? <Work /> : view === 'aoda' ? <CompanyCase /> : view === 'contact' ? <DeskContact /> : project ? <PersonalCase project={project} /> : <About effects={effects} />}</main></div>;
 }

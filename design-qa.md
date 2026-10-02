@@ -1,23 +1,41 @@
-# Design QA — 2026-09-30
+# Portfolio desk direction — visual QA, 2026-10-03
 
-Final result: passed for this iteration's supplied layout targets and implemented interactions.
+final result: passed
 
-## Scope and targets
-Compared the supplied personal and company case reference images with fresh 1586 × 995, deviceScaleFactor 1 captures. Source images were proportionally normalized; only page layout, visual hierarchy and interactions were targets. Palette, identity, software UI and available materials intentionally differ. Combined comparisons: `_inspect/compare-personal.jpg`, `_inspect/compare-company.jpg`. About and contact were inspected against their supplied reference screenshots. This is an iteration, not a claim of pixel-identical imagery or final artistic approval.
+## Targets and scope
 
-## Findings and corrections
-- P1: hero screenshot overflowed into the chapter. Fixed with a constrained flex media surface; recaptured fully contained screenshot.
-- P1: the contact text layer intercepted the booth pointer target. Removed its pointer interception while keeping contact links interactive. Verified hover, click and hover-to-email continuity.
-- P2: card overlap hid theme labels, especially on phones. Reduced desktop fan overlap; mobile now has a horizontal snap strip with complete cards.
-- P2: portrait contact cropped the booth off screen. Corrected the asset positioning; recaptured the open booth with usable contact links.
-- P2: initially empty 3D surface. Static badge remains until the resource-dependent scene has rendered eight frames; eager module loading and earlier intro warmup preserve drag physics.
-- P2: company evidence misclassification. Removed shop covers from live/brand and social posts from systems, imported 123 library items, and split collections inside the evidence browser.
+Selected target: `design/2026-09-30-cohesion/visual-direction-01.png` (warm collector desk). The board establishes the shared scene, materials, two-folder Work choice and independent phone/mail interactions. Actual badge artwork, avatar, application interfaces and company evidence replace the board's illustrative placeholder content. Case chapter structure retains the user's supplied case layout rather than the board's example English copy.
 
-## Verification
-TypeScript check and Vite production build passed. Fresh browser checks: no page errors or failed asset requests. Routes, section controls, zoom/Escape, SPA navigation, contact hover persistence, 720 × 1280 metadata and playback readiness for both new videos passed. 1920 × 1080 routes fit without horizontal overflow; main case views fit their desktop viewport. At 1366 × 768 the initial personal layout showed 15 px excess height; compact-height adjustment subsequently applied. Phones support scrolling and landscape rather than forcing orientation.
+## Visual evidence
 
-IAB inspection timed out; captures and interactions were performed with the installed Chromium test runtime. No remote source media or confidential customer records were newly published.
+Local browser captures are saved in the working stage `_inspect` directory. The in-app browser failed to initialize with a missing kernel-assets path; Chromium browser captures and interaction checks were used as the fallback.
 
-## Outstanding evidence
-AI workflow is supported by business knowledge and content-structure materials. A full operation recording with input, AI processing, manual review and output is still needed for stronger case evidence. Client CRM rows were excluded; existing cropped workflow and guide images remain.
-The final 1366 × 768 recheck covered all three personal cases: document height 768 px, chapter bottom 683.53 px, no overflow. The video collection includes all three videos. Long images now support a separately verified reading zoom with scroll, fit-to-screen toggle and Escape dismissal.
+- `qa-contact-comparison-final.png`: source contact crop and actual open-phone screen together, each 1456 × 668.
+- `qa-pages-comparison.png`: About, Work and personal case source panels beside the rendered pages. Board panels are camera close-ups with a different aspect ratio; these comparisons assess composition/material continuity, not a pixel-difference score.
+- `qa-projects-{snapsort,compliance-guardian,xuanlan,aoda}.png`: cases at 1366 × 768.
+- `check-desktop-*.png`: 1440 × 900; `desk-desktop-*.png`: 1920 × 1080.
+- `check-landscape-*.png`: 844 × 390; `check-mobile-*.png`: 390 × 844.
+- `contact-closed.png`, `contact-open.png`, `contact-both.png`: independent closed/open states.
+
+## Iterations and fixes
+
+1. P1: old paper-noise texture overwhelmed case text. Replaced with generated subtle paper folio artwork.
+2. P1: old company layout collapsed theme cards into thin rows. Restored five selectable physical paper tabs with clear titles and selected state.
+3. P1: About portrait layout clipped the experience and next link. Removed fixed portrait height and verified the complete scrolling page.
+4. P1: isolated door was detached/narrow because a global image max-width overrode the texture mapping. Corrected the actual transparent bounds and hinge mapping; compared closed and open captures again.
+5. P2: desk was too bare and evenly lit compared with the chosen board. Regenerated the background with foreground photographs, pen, books, plant and film props, while retaining room for real controls. The final source/implementation comparison uses this updated scene.
+6. P2: small landscape cases placed their chapter below the selector. Restored the compact three-column chapter grid and verified all primary content fits the landscape viewport.
+7. P2: long chapter copy hid the explanation action and skill icons. Made only the paragraph internally scrollable, keeping chapter actions visible; recaptured all personal cases at 1366 × 768.
+
+## Functional checks
+
+Verified real navigation from Work to SnapSort; three personal project entries; chapter changes; image dialog and Escape close; nine SnapSort gallery images; company theme changes; video starts and advances; independent phone/mail click states; phone and email links; zero horizontal page overflow at the tested sizes. No JavaScript errors or failed asset responses in these checks. Intro finishes at About and removes its overlay.
+
+## Remaining polish, P3
+
+- The contact scene uses a textured door with a perspective hinge, not a complete booth 3D model; fine hinge shading can improve in a later animation pass.
+- The editable interface uses real materials, so its screenshot content differs from the generated board's fictional applications/person.
+- Small landscape text is compact; full evidence remains available through enlargement and the gallery. Portrait uses natural vertical scrolling.
+- AI workflow evidence still needs the user's full before/after demonstration; the current case accurately labels the available documentation.
+
+No unresolved P0/P1/P2 item remains in this implementation scope.

@@ -10,6 +10,7 @@ import '../app/about-reference.css';
 import '../app/case-reference.css';
 import '../app/portfolio-refinement.css';
 import '../app/cohesion.css';
+import '../app/desk-scene.css';
 
 const routeViews: Record<string, EditorialView> = {
   '/about': 'about',
