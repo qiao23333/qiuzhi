@@ -5,6 +5,7 @@ const EnvelopeIntro = lazy(() => import('../app/envelope-intro'));
 import type { EditorialView } from '../app/editorial-pages';
 import { currentRoute, sitePath } from '../app/site-path';
 import '../app/desk-scene.css';
+import '../app/theatre-contact.css';
 
 const routeViews: Record<string, EditorialView> = {
   '/about': 'about',

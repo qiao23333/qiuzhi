@@ -21,7 +21,8 @@ export default function EnvelopeIntro({ onDone, onReveal }: { onDone: () => void
     const escape = (e: KeyboardEvent) => { if (e.key === 'Escape') onDone(); };
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) onDone();
     const instance = player.current;
-    const finishTimer=loaded?window.setTimeout(onDone, (INTRO_FRAMES / 30) * 1000 + 1200):undefined;
+    if(import.meta.env.DEV && instance)(window as any).__portfolioIntro=instance;
+    const finishTimer=loaded?window.setTimeout(()=>{if(import.meta.env.DEV && instance && !instance.isPlaying())return;onDone();}, (INTRO_FRAMES / 30) * 1000 + 1200):undefined;
     const reveal = ({ detail }: { detail: { frame: number } }) => { if (detail.frame >= 115) onReveal(); };
     instance?.addEventListener('ended', onDone);
     instance?.addEventListener('frameupdate', reveal);
@@ -30,13 +31,14 @@ export default function EnvelopeIntro({ onDone, onReveal }: { onDone: () => void
     return () => {
       document.body.style.overflow = previous;
       window.clearTimeout(finishTimer);
+      if(import.meta.env.DEV)delete (window as any).__portfolioIntro;
       instance?.removeEventListener('ended', onDone);
       instance?.removeEventListener('frameupdate', reveal);
       window.removeEventListener('resize', resize);
       window.removeEventListener('keydown', escape);
     };
   }, [onDone, onReveal,loaded]);
-  return <main className="film-intro" aria-label="信封开场动画">
+  return <main className={`film-intro ${loaded?'is-loaded':''}`} aria-label="信封开场动画">
     {loaded && <Player ref={player} component={IntroFilm} durationInFrames={INTRO_FRAMES} fps={30}
       compositionWidth={size.width} compositionHeight={size.height}
       autoPlay controls={false} moveToBeginningWhenEnded={false} clickToPlay={false} doubleClickToFullscreen={false}

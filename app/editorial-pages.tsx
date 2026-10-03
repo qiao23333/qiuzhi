@@ -60,11 +60,11 @@ function About({ effects = true }: { effects?: boolean }) {
     <div className="ref-about__spread">
       <img className="ref-about__book" src={sitePath('/portfolio/scene/binder.webp')} alt="" />
       <LanyardBadge active={effects} />
-      <div className="ref-about__heading"><small>01 / PERSONAL FILE</small><h1>ABOUT ME</h1><span>CONTENT　/　PRODUCT　/　AI WORKFLOW</span></div>
-      <div className="ref-about__intro"><strong>你好，我是王康桥。</strong><p>内容运营、品牌物料、AI 工具与工作流。</p><p>2026 年 6 月毕业，正在寻找新的工作机会。</p></div>
+      <div className="ref-about__heading"><small>个人介绍</small><h1>ABOUT ME</h1><span>内容 · 品牌 · AI 工具</span></div>
+      <div className="ref-about__intro"><strong>HI! I'M <span>王康桥</span></strong><p>做过内容运营与投流，参与过初创公司的品牌与业务基础搭建。</p><p>也做一些解决实际问题的 AI 工具。</p></div>
       <div className="ref-about__experience"><h2>Experience</h2><div><b>星航传媒</b><time>2025.09 — 2026.05</time><p>新媒体运营与投流专员实习。</p></div><div><b>澳达因私出入境</b><time>2026.05 — 2026.09</time><p>参与内容、品牌和内部流程的搭建。</p></div></div>
       <div className="ref-about__polaroid"><img src={sitePath('/portfolio/avatar.webp')} alt="王康桥的博客头像" /><span>WANG KANGQIAO</span></div>
-      <a className="ref-about__next" href={sitePath('/projects')}>VIEW WORK <ArrowUpRight size={22} /></a>
+      <span className="ref-about__status">2026.06 毕业 · 求职中</span><a className="ref-about__next" href={sitePath('/projects')}>查看作品 <ArrowUpRight size={22} /></a>
     </div>
   </section>;
 }

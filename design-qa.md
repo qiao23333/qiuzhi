@@ -1,4 +1,16 @@
-# Portfolio repair verification — 2026-10-03
+# Portfolio visual refinement — 2026-10-04
+
+## Current selected reference and result
+- Contact follows the lower theatre scene in `design/2026-09-30-cohesion/visual-direction-03.png`: charcoal backdrop, burgundy curtains, warm brass lighting, handwritten contact labels and postage links.
+- About and Work now size their principal objects against both viewport width and height, without the previous narrow desktop width caps. At 1920×1080 both fit within the viewport.
+- About typography and copy now use a clear introduction, factual experience and graduation/job-search status.
+- Intro uses a slower envelope opening, paper extraction and camera push. Its final binder position aligns with About. The opaque parent layer that prevented the actual handoff was corrected.
+- Contact phone/mail interactions remain independent; phone and email are readable before interaction. Portrait layouts place the two contact labels in separate columns.
+- Fresh reference/actual comparison: `_inspect/theatre-contact-comparison.png`. Fresh intro handoff: `_inspect/bridge-final-215.png`.
+- Theatre checks cover 1456×650, 1920×1080, 390×844 and 844×390, with no horizontal overflow, missing assets or browser errors. TypeScript and production build passed.
+- Scope passes the selected composition and interaction checks. The booth and mailbox retain the existing asset perspectives; they are not identical to the mockup camera angles.
+
+## Previous repair verification — 2026-10-03
 
 Visual direction: approved warm desk, paper binder/folders, red booth and mailbox (visual-direction-01). Compared with fresh browser captures; no new visual direction introduced.
 
