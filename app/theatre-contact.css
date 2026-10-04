@@ -1,19 +1,19 @@
 @font-face{font-family:Caveat;src:url('../public/portfolio/fonts/caveat.ttf') format('truetype');font-display:swap;font-weight:400 700}
 @font-face{font-family:ArchiveBlock;src:url('../public/portfolio/fonts/barlow-condensed-black.ttf') format('truetype');font-display:swap;font-weight:900}
-.desk-shell--contact .desk-backdrop{background-image:url('../public/portfolio/scene/desk.webp');background-position:center}
+.desk-shell--contact .desk-backdrop{background-image:url('../public/portfolio/scene/contact-desk.webp');background-position:center;background-size:100% 100%}
 .desk-shell--contact .v3-nav{position:absolute;inset:0 0 auto;height:76px;z-index:30}
 .theatre-contact{width:100%;max-width:none;height:100svh;min-height:650px;overflow:hidden;color:#eee4d2}
 .theatre-contact__year{position:absolute;right:5%;top:29px;font:18px Caveat,cursive;color:#d5c7b1}
-.theatre-contact .desk-phone{left:32%;top:10%;width:35%;height:82%}
-.theatre-contact .desk-phone__object{width:100%;height:100%;filter:brightness(.84) saturate(.9) drop-shadow(14px 18px 15px #0009);transition:filter .8s}
-.theatre-contact.phone-open .desk-phone__object{filter:brightness(.95) saturate(.95) drop-shadow(14px 18px 15px #0009)}
-.theatre-contact .desk-phone__door{transition:transform .9s cubic-bezier(.4,0,.2,1);backface-visibility:visible;will-change:transform}
-.theatre-contact.phone-open .desk-phone__door{transform:rotateY(-90deg)}
+.theatre-contact .desk-phone{left:35%;top:16%;width:32%;height:73%}
+.theatre-contact .desk-phone__object{width:100%;height:100%;filter:brightness(.78) saturate(.8) drop-shadow(3px 4px 2px #000b) drop-shadow(17px 9px 6px #0007);transition:filter .8s}
+.theatre-contact.phone-open .desk-phone__object{filter:brightness(.88) saturate(.85) drop-shadow(3px 4px 2px #000b) drop-shadow(17px 9px 6px #0007)}
+.theatre-contact .desk-phone__geometry{perspective:none;overflow:visible}
+.theatre-contact .desk-phone__projected-door{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:fill;transform-origin:0 0;will-change:transform;pointer-events:none}
 .theatre-contact .desk-phone__number{left:91%;top:34%;opacity:1;visibility:visible;z-index:12;transform:rotate(-7deg);display:grid;grid-template-columns:max-content;text-align:left;white-space:nowrap;overflow:visible}
 .theatre-contact .desk-phone__number small{font:400 clamp(30px,3vw,58px)/1.1 Caveat,cursive;display:flex;align-items:center;gap:10px}
 .theatre-contact .desk-phone__number strong{font:400 clamp(28px,2.8vw,54px)/1.2 Caveat,cursive;margin:4px 0 0 30px;letter-spacing:.01em}
-.theatre-contact .desk-mail{left:13%;bottom:8%;width:28%;height:33%;z-index:10}
-.theatre-contact .desk-mail__object{right:0;width:75%;height:100%;filter:brightness(.87) saturate(.88) drop-shadow(8px 14px 12px #0009)}
+.theatre-contact .desk-mail{left:16%;bottom:10%;width:28%;height:29%;z-index:10}
+.theatre-contact .desk-mail__object{right:0;width:75%;height:100%;filter:brightness(.79) saturate(.78) drop-shadow(2px 3px 2px #000b) drop-shadow(11px 6px 5px #0008)}
 .theatre-contact .desk-mail__object img{transition:opacity .6s ease}
 .theatre-contact .desk-mail__address{left:-2%;top:-32%;display:flex;flex-direction:column;align-items:flex-start;gap:10px;transform:rotate(-7deg);z-index:12;transition:top .65s cubic-bezier(.22,1,.36,1)}
 .theatre-contact.mail-open .desk-mail__address{top:-82%;left:-2%;transform:rotate(-7deg)}
@@ -22,9 +22,9 @@
 .theatre-contact .contact-email .contact-lettering--hand strong{font:400 clamp(27px,2.7vw,50px)/1.2 Caveat,cursive;letter-spacing:.01em}
 .theatre-contact .contact-lettering{grid-area:1/1;display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap;pointer-events:none;transition:opacity .3s ease,transform .65s cubic-bezier(.22,1,.36,1)}
 .theatre-contact .contact-lettering--hand{opacity:1;transform:translateY(0);color:#eee4d2;text-shadow:0 2px 5px #000}
-.theatre-contact .contact-lettering--raised{position:absolute;left:0;top:0;opacity:0;transform:translateY(18px) scale(.92);transform-origin:left center;color:#f8e6c3;letter-spacing:-.035em;text-shadow:1px 1px #e0c69f,2px 2px #d7ba90,3px 3px #ccb086,4px 4px #c2a57c,5px 5px #b69a73,6px 6px #ab8f69,7px 7px #a08661,8px 8px #967c59,9px 9px #8c7251,10px 10px #826949,11px 11px #775e41,12px 12px #6d5539,13px 13px #634c32,14px 14px #59432c,18px 23px 10px #0009}
-.theatre-contact .desk-phone__number .contact-lettering--raised small{font:900 clamp(42px,5.3vw,104px)/.96 ArchiveBlock,Impact,sans-serif;letter-spacing:-.025em}
-.theatre-contact .desk-phone__number .contact-lettering--raised strong{font:900 clamp(52px,6.2vw,122px)/1 ArchiveBlock,Impact,sans-serif;letter-spacing:-.035em;margin:8px 0 0}
+.theatre-contact .contact-lettering--raised{position:absolute;left:0;top:0;opacity:0;transform:translateY(18px) scale(.92);transform-origin:left center;color:#f8e6c3;letter-spacing:-.015em;text-shadow:1px 1px #e0c69f,2px 2px #d7ba90,3px 3px #ccb086,4px 4px #b69a73,5px 5px #967c59,6px 6px #775e41,7px 7px #59432c,10px 13px 7px #0009}
+.theatre-contact .desk-phone__number .contact-lettering--raised small{font:900 clamp(42px,4.6vw,88px)/.96 ArchiveBlock,Impact,sans-serif;letter-spacing:-.025em}
+.theatre-contact .desk-phone__number .contact-lettering--raised strong{font:900 clamp(52px,5.3vw,102px)/1 ArchiveBlock,Impact,sans-serif;letter-spacing:.01em;margin:8px 0 0}
 .theatre-contact .contact-email .contact-lettering--raised>span{font:900 clamp(45px,5.2vw,100px)/.95 ArchiveBlock,Impact,sans-serif}
 .theatre-contact .contact-email .contact-lettering--raised strong{font:900 clamp(43px,4.7vw,91px)/.98 ArchiveBlock,Impact,sans-serif;letter-spacing:-.025em;margin-top:8px}
 .theatre-contact .contact-email .contact-lettering--raised strong>span{display:block;align-self:flex-end;text-align:right}
@@ -55,6 +55,7 @@
 .theatre-contact .desk-contact__elsewhere img{width:22px;height:22px;filter:invert(1)}
 .contact-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:720px){
+ .desk-shell--contact .desk-backdrop{background-size:cover;background-position:52% center}
  .desk-shell--contact .v3-nav{height:65px;width:94vw;gap:24px}.theatre-contact{height:100svh;min-height:800px}.theatre-contact__year{display:none}
  .theatre-contact .desk-phone{left:24%;top:11%;width:60%;height:57%}.theatre-contact .desk-phone__number{left:40%;top:104%;transform:rotate(-5deg)}
  .theatre-contact .desk-phone__number small,.theatre-contact .desk-phone__number strong{font-size:25px;margin-left:0}

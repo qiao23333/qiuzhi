@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Phone, Mail, BookOpen, CornerDownLeft, CornerDownRight } from 'lucide-react';
 import { sitePath } from './site-path';
+import PhoneDoor from './phone-door';
 export default function DeskContact() {
   const [phone,setPhone]=useState(false),[mail,setMail]=useState(false),[hover,setHover]=useState<'phone'|'mail'|null>(null),[copied,setCopied]=useState<'phone'|'mail'|null>(null),[status,setStatus]=useState('');
   const phoneOpen=phone || hover==='phone',mailOpen=mail || hover==='mail';
@@ -20,7 +21,7 @@ export default function DeskContact() {
     <span className="theatre-contact__year">2026</span>
     <div className="desk-phone" onMouseEnter={()=>enter('phone')} onMouseLeave={leave}>
       <button className="desk-phone__object" onClick={()=>{clearTimeout(leaveTimer.current);setPhone(!phone);setHover(null);}} aria-label={phoneOpen?'关闭电话亭':'打开电话亭'} aria-pressed={phoneOpen}>
-        <span className="desk-phone__geometry"><img className="desk-phone__body" src={sitePath('/portfolio/scene/phone-body.webp')} alt="红色电话亭"/><span className="desk-phone__door"><img src={sitePath('/portfolio/scene/phone-door.webp')} alt=""/></span></span>
+        <span className="desk-phone__geometry"><img className="desk-phone__body" src={sitePath('/portfolio/scene/phone-body.webp')} alt="红色电话亭"/><PhoneDoor open={phoneOpen}/></span>
       </button>
       <button className={`desk-phone__number contact-value ${copied==='phone'?'is-copied':''}`} onClick={()=>copy('phone')} aria-label="复制电话号码 19328749431"><span className="contact-lettering contact-lettering--hand" aria-hidden="true"><small><Phone size={26}/> Telephone</small><strong>19328749431</strong></span><span className="contact-lettering contact-lettering--raised" aria-hidden="true"><small>TELEPHONE</small><strong>19328749431</strong></span><CornerDownLeft className="contact-direction" size={40}/></button>
       <img className="desk-phone__rays" src={sitePath('/portfolio/scene/contact-rays.webp')} alt=""/>
