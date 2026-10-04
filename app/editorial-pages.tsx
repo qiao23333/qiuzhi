@@ -60,8 +60,8 @@ function About({ effects = true }: { effects?: boolean }) {
     <div className="ref-about__spread">
       <img className="ref-about__book" src={sitePath('/portfolio/scene/binder.webp')} alt="" />
       <LanyardBadge active={effects} />
-      <div className="ref-about__heading"><small>个人介绍</small><h1>ABOUT ME</h1><span>内容 · 品牌 · AI 工具</span></div>
-      <div className="ref-about__intro"><strong>HI! I'M <span>王康桥</span></strong><p>做过内容运营与投流，参与过初创公司的品牌与业务基础搭建。</p><p>也做一些解决实际问题的 AI 工具。</p></div>
+      <div className="ref-about__heading"><small>个人介绍</small><h1>ABOUT ME</h1><span>内容 · 产品 · AI 工作流</span></div>
+      <div className="ref-about__intro"><strong>HI! I'M <span>王康桥</span></strong><p>做过内容运营与投流，参与初创公司的品牌、内容与业务流程搭建。</p><p>也用 AI 开发工具，改进重复性工作。</p></div>
       <div className="ref-about__experience"><h2>Experience</h2><div><b>星航传媒</b><time>2025.09 — 2026.05</time><p>新媒体运营与投流专员实习。</p></div><div><b>澳达因私出入境</b><time>2026.05 — 2026.09</time><p>参与内容、品牌和内部流程的搭建。</p></div></div>
       <div className="ref-about__polaroid"><img src={sitePath('/portfolio/avatar.webp')} alt="王康桥的博客头像" /><span>WANG KANGQIAO</span></div>
       <span className="ref-about__status">2026.06 毕业 · 求职中</span><a className="ref-about__next" href={sitePath('/projects')}>查看作品 <ArrowUpRight size={22} /></a>
@@ -106,7 +106,7 @@ function PersonalCase({ project }: { project: PersonalProject }) {
       <a className="v3-return" href={sitePath('/projects')}><ArrowLeft size={17} /> 所有作品</a>
       <div className="v3-case__hero">
         <div className="v3-case__copy"><span>PERSONAL PROJECT / {projectNumber}</span><h1>{project.name}<i>.</i></h1><h2>{project.subtitle}</h2><p>{summaries[project.slug]}</p><div className="v3-case__links">{project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<ExternalLink size={15} /></a>)}</div><div className="v3-case__scroll"><ArrowDown size={16} /> 向下看项目过程</div></div>
-        <button className="v3-case__hero-image" onClick={() => setZoom(project.image)} aria-label={`放大查看${project.name}界面`}><img src={project.image} alt={project.imageAlt} /><span>ACTUAL INTERFACE / 点击放大</span></button>
+        <button className="v3-case__hero-image" onClick={() => setZoom(project.image)} aria-label={`放大查看${project.name}界面`}><img src={project.image} alt={project.imageAlt} /><span>界面截图 <ArrowUpRight size={13}/></span></button>
       </div>
     </div>
     <div className="v3-case__story"><div className="v3-wrap">

@@ -1,6 +1,11 @@
 # Portfolio visual refinement — 2026-10-04
 
 ## Current selected reference and result
+- Latest reference supersedes the theatre scene: supplied image 2 for the warm desk / large TELEPHONE extrusion; image 1 for EMAIL / number / @qq.com three-line extrusion. Existing photographic desk, phone, mailbox and yellow accent assets reused.
+- Removed the separate copy icon. Contact values are accessible buttons that copy the exact plain phone/email value, use the native copy cursor, hover emphasis and temporary highlight; a screen-reader status reports the result. The app never substitutes a mail-app launch for failed copying.
+- Corrected an interaction defect where the invisible raised lettering occupied the closed-mail hit area. Raised layers now have separate hit bounds and the mailbox remains clickable.
+- About heading and copy refined; personal project cards reuse actual paper art with transparent surroundings; company detail retains its main title and drops redundant English labels. Navigation/backdrop have stable view-transition names.
+- Latest checks: reference 1456×666, desktop 1456×850, compact 1366×768, portrait 390×844, landscape 844×390. Clipboard readback verifies both exact values; door matrix verifies 90 degrees. Screenshot comparison: `_inspect/archive-reference-comparison.png`. No missing assets/browser errors/horizontal overflow. TypeScript and build passed.
 - Follow-up: corrected envelope body/flap source aspect ratios, matched flap width and seal position, removed the visible paper edge beneath the closed pocket, kept paper layering fixed and followed extraction with the camera. The paper-to-book blend now uses one aligned interval; the sheet alpha fringe is masked to its actual edge.
 - Contact door now stops at exactly -90 degrees. Handwritten labels crossfade to raised lettering after a short opening delay and return on closing. Desktop, portrait and landscape checks verify the hinge matrix, independent open/close, readable contact bounds and no horizontal overflow.
 - Remotion Studio now imports the same scene styling as the website. Binder preload added to the intro.

@@ -41,3 +41,20 @@
 .letter-film .letter-film__paper{background:none}
 .letter-film__sheet-texture{position:absolute;inset:0;width:100%;height:100%;z-index:-1;clip-path:polygon(3% 3%,97% 3%,99% 6%,99% 88%,100% 93%,98% 98%,2% 98%,1% 94%,1% 11%,0% 10%,1% 7%)}
 .v3-nav a[aria-current=page]{border-color:#ad3f23}
+
+/* Printed archive headings and steady shared surroundings between pages. */
+.desk-backdrop{view-transition-name:portfolio-desk}
+.v3-nav{view-transition-name:portfolio-nav}
+.v3-main{view-transition-name:portfolio-content}
+::view-transition-old(portfolio-content){animation-duration:180ms}
+::view-transition-new(portfolio-content){animation-duration:320ms}
+.ref-about__heading h1{font-family:ArchiveBlock,Impact,sans-serif;font-size:5.1cqw;letter-spacing:.005em;font-weight:900}
+.choice-projects>a{background:transparent url('../public/portfolio/scene/case-paper.webp') center/100% 100% no-repeat;box-shadow:none;filter:drop-shadow(0 15px 15px #0007);padding:30px 27px}
+.choice-projects a>div{height:clamp(150px,24svh,270px);padding:10px;filter:drop-shadow(0 8px 6px #0003)}
+.choice-projects h2{font-family:ArchiveBlock,Arial,'Microsoft YaHei',sans-serif;letter-spacing:.005em}
+.choice-projects p{font-size:clamp(13px,1vw,17px);margin-top:8px;line-height:1.55}
+.v3-case__hero-image>span{display:inline-flex;align-items:center;gap:7px}
+.v3-company__detail-summary>small{display:none}
+.v3-company__detail-summary>p{font-size:clamp(15px,1.2vw,21px);line-height:1.65;margin-top:8px}
+@media(max-width:720px){.ref-about__heading h1{font-size:48px}.choice-projects>a{padding:28px 24px}.choice-projects a>div{height:200px}.v3-company__detail-summary>p{font-size:16px}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(*),::view-transition-new(*){animation:none!important}}
