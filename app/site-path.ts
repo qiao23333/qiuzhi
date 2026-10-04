@@ -1,4 +1,4 @@
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const base = (import.meta.env?.BASE_URL ?? '/').replace(/\/$/, '');
 
 export function sitePath(path: string): string {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;

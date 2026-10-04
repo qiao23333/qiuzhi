@@ -1,6 +1,9 @@
 # Portfolio visual refinement — 2026-10-04
 
 ## Current selected reference and result
+- Follow-up: corrected envelope body/flap source aspect ratios, matched flap width and seal position, removed the visible paper edge beneath the closed pocket, kept paper layering fixed and followed extraction with the camera. The paper-to-book blend now uses one aligned interval; the sheet alpha fringe is masked to its actual edge.
+- Contact door now stops at exactly -90 degrees. Handwritten labels crossfade to raised lettering after a short opening delay and return on closing. Desktop, portrait and landscape checks verify the hinge matrix, independent open/close, readable contact bounds and no horizontal overflow.
+- Remotion Studio now imports the same scene styling as the website. Binder preload added to the intro.
 - Contact follows the lower theatre scene in `design/2026-09-30-cohesion/visual-direction-03.png`: charcoal backdrop, burgundy curtains, warm brass lighting, handwritten contact labels and postage links.
 - About and Work now size their principal objects against both viewport width and height, without the previous narrow desktop width caps. At 1920×1080 both fit within the viewport.
 - About typography and copy now use a clear introduction, factual experience and graduation/job-search status.

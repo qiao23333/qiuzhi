@@ -27,3 +27,17 @@
 @media(max-width:720px){.choice-work{height:auto;min-height:calc(100svh - 65px)}.choice-door{height:425px;max-height:none}}
 @media(max-height:600px) and (min-width:721px){.choice-work{height:auto;min-height:550px}.choice-door{height:440px;max-height:none}}
 .film-intro.is-loaded{background:transparent}
+
+/* Match the source asset proportions and keep the hinge fixed at the envelope lip. */
+.letter-film__body-image{left:-24px;top:-60px;width:820px;height:auto;aspect-ratio:1659/948;object-fit:contain;filter:drop-shadow(8px 15px 12px #0007)}
+.letter-film__flap{height:286px}
+.letter-film__flap-image{left:0;top:-24px;width:734px;height:auto;aspect-ratio:1942/809;object-fit:contain}
+.letter-film .letter-film__paper{top:22px;height:335px;background-size:100% 100%;box-shadow:0 2px 3px #0005,0 8px 18px #14080550}
+.letter-film__seal{left:309px;top:211px}
+.letter-film__paper-title{inset:83px 0 auto;font-size:100px}
+.letter-film__paper-meta{top:27px}
+.letter-film .letter-film__paper{box-shadow:none;filter:drop-shadow(0 6px 6px #14080560)}
+.letter-film__grain{inset:14px 15px 12px;border-radius:8px}
+.letter-film .letter-film__paper{background:none}
+.letter-film__sheet-texture{position:absolute;inset:0;width:100%;height:100%;z-index:-1;clip-path:polygon(3% 3%,97% 3%,99% 6%,99% 88%,100% 93%,98% 98%,2% 98%,1% 94%,1% 11%,0% 10%,1% 7%)}
+.v3-nav a[aria-current=page]{border-color:#ad3f23}
