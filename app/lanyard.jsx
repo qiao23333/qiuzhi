@@ -11,6 +11,11 @@ import { sitePath } from './site-path';
 const cardGLB = sitePath('/assets/lanyard/card.glb');
 const lanyard = sitePath('/assets/lanyard/strap.png');
 
+useGLTF.preload(cardGLB);
+for (const path of ['strap.png', 'card-atlas.png', 'connector-metal.png']) {
+  useTexture.preload(sitePath(`/assets/lanyard/${path}`));
+}
+
 import * as THREE from 'three';
 import './lanyard.css';
 
@@ -39,7 +44,7 @@ export default function Lanyard({
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
   useEffect(() => {
-    const surface = document.querySelector('.ref-about');
+    const surface = document.querySelector('.desk-shell--about');
     const stopImageDrag = (event) => event.preventDefault();
     surface?.addEventListener('dragstart', stopImageDrag);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -50,7 +55,7 @@ export default function Lanyard({
   return (
     <div className="lanyard-wrapper">
       <Canvas
-        eventSource={document.querySelector('.ref-about') || undefined}
+        eventSource={document.querySelector('.desk-shell--about') || undefined}
         events={(state) => ({
           ...createEvents(state),
           compute: (event, current) => {
@@ -281,10 +286,10 @@ function Band({
                 alphaTest={0.45}
                 transparent={false}
                 depthWrite={true}
-                clearcoat={isMobile ? 0 : 1}
-                clearcoatRoughness={0.15}
-                roughness={0.9}
-                metalness={0.8}
+                clearcoat={isMobile ? 0 : 0.35}
+                clearcoatRoughness={0.32}
+                roughness={0.68}
+                metalness={0.08}
               />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-map={connectorMetal} material-color="#ffffff" material-roughness={0.3} />

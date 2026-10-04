@@ -1,4 +1,19 @@
+## Navigation and badge refinement — 2026-10-05
+
+final result: passed for the repairs below
+
+1. Reference: `D:\codex\WKQ\参考\求职\个人介绍页.png`. Before: the About container clipped the strap below the navigation; centered navigation competed with the foreground badge. After: right-aligned handwritten navigation, visible strap from the viewport edge, larger foreground badge, separate paper shadows. Preserved the original physics, model, UV and supplied textures. Adjusted print roughness/metalness and preloaded badge resources; loading art follows the same frame.
+2. Company chapter cards now reuse the existing paper texture and show corresponding real previews. Selected cards lift gently; source images remain contained. Brand selection verified to show six brand assets rather than the 72 content assets.
+3. Compact desktop case layout repaired: at 1280×720, SnapSort and company default states have a page height of 720 with no horizontal overflow. Expanded galleries intentionally scroll. SnapSort nine-image gallery and full-image viewer checked interactively.
+4. Contact navigation matches the other pages without adding page height; removed its conflicting year label and gently corrected booth exposure. Existing projective door opening is preserved.
+5. Intro completed into About in the actual browser and the WebGL badge reached its ready state. Fixed duplicate root creation during development reloads. Fresh final browser has no error logs or missing images.
+
+Evidence: `_inspect/polish-about.png`, `polish-about-comparison.png`, `polish-about-mobile.png`, `polish-work.png`, `polish-company.png`, `polish-snap.png`, `polish-contact.png`. Desktop screenshots reviewed at 1280×720; portrait at 390×844. About 1920×1080 page bounds checked, but the available browser screenshot surface clips wider overrides, so the wide screenshot is not complete visual evidence. Native badge drag, project navigation and material expansion checked. TypeScript and production build passed.
+
+Limits: this iteration repairs navigation, layering, surface presentation and compact desktop fit; the photographic door is still a projected image rather than a volumetric 3D booth. Creative intro and overall artwork can still be refined.
 # Portfolio visual refinement — 2026-10-04
+
+final result: passed
 
 ## Current selected reference and result
 - Contact perspective repair, latest iteration: compared `联系方式参考3.png` for the right-hand hinge and outward door pose, and the selected warm tabletop mockup for the room. Replaced the screen-plane rotateY shortcut with a photographic projective door mapping: both hinge endpoints remain fixed and the free edge follows a quarter turn, exposing a visible outward-facing panel. Opening/closing reversals start from the current pose. First paint and resize reapply the projection.
@@ -50,3 +65,4 @@ Visual direction: approved warm desk, paper binder/folders, red booth and mailbo
 - The WebGL badge remains a large lazy-loaded dependency; static art is the loading / reduced-motion / error fallback.
 - AI workflow evidence still lacks a complete before/after operation demo. Existing material and its stated limits are preserved.
 - This is a verified repair of layout and interaction defects, not a claim that every creative detail is final.
+

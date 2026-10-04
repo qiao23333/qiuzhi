@@ -6,6 +6,7 @@ import type { EditorialView } from '../app/editorial-pages';
 import { currentRoute, sitePath } from '../app/site-path';
 import '../app/desk-scene.css';
 import '../app/theatre-contact.css';
+import '../app/archive-polish.css';
 
 const routeViews: Record<string, EditorialView> = {
   '/about': 'about',
@@ -33,4 +34,6 @@ function App() {
   return <><div inert={intro || undefined}><EditorialPortfolio view={routeViews[route] ?? 'about'} effects={effects} /></div>{intro && <Suspense fallback={<div className="intro-loading"><button onClick={done}>跳过 ↗</button></div>}><EnvelopeIntro onDone={done} onReveal={reveal} /></Suspense>}</>;
 }
 
-createRoot(document.getElementById('root')!).render(<App />);
+const root = import.meta.hot?.data.root ?? createRoot(document.getElementById('root')!);
+if (import.meta.hot) import.meta.hot.data.root = root;
+root.render(<App />);

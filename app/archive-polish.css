@@ -1,0 +1,76 @@
+/* Keep the controls on the room wall, with clear space for the hanging badge. */
+.desk-shell .v3-nav{position:relative;width:94vw;max-width:1460px;height:76px;margin:auto;justify-content:flex-end;gap:30px;z-index:3;background:none;pointer-events:none}
+.desk-shell .v3-nav a,.desk-shell .v3-nav nav{pointer-events:auto}
+.desk-shell .v3-logo{font-size:22px;margin-right:8px}
+.desk-shell .v3-nav nav{gap:30px}
+.desk-shell .v3-nav nav a{font:400 21px Caveat,'Segoe Print',cursive;min-height:44px;padding:10px 2px 7px;transition:color .2s}
+.desk-shell .v3-nav nav a:hover{color:#f4cd80}
+.desk-shell .v3-nav nav a[aria-current=page]{color:#f5d99d;border-color:#c78049}
+.desk-shell--contact .v3-nav{position:absolute;inset:0 3vw auto;width:94vw;max-width:none}
+.theatre-contact__year{display:none}
+.theatre-contact .desk-phone__object{filter:brightness(.86) saturate(.85) drop-shadow(3px 4px 2px #000b) drop-shadow(17px 9px 6px #0007)}
+.theatre-contact.phone-open .desk-phone__object{filter:brightness(.94) saturate(.9) drop-shadow(3px 4px 2px #000b) drop-shadow(17px 9px 6px #0007)}
+.desk-shell--about .v3-main{z-index:4}
+.desk-shell--about .ref-about{overflow:visible}
+.desk-shell--about .ref-about__spread{filter:none}
+.desk-shell--about .ref-about__book{filter:drop-shadow(0 16px 16px #130b0866)}
+.desk-shell--about .ref-lanyard{left:5%;width:28%;z-index:25}
+.ref-about__intro strong{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:800}
+.ref-about__experience h2{font:800 max(20px,1.8cqw)/1.2 Arial,sans-serif;letter-spacing:-.025em}
+.ref-about__heading>span{letter-spacing:.03em}
+.choice-door{transition:transform .55s cubic-bezier(.22,1,.36,1),filter .45s}
+.choice-door:hover,.choice-door:focus-visible{transform:translateY(-9px) rotate(-1deg);filter:drop-shadow(0 22px 17px #120b0877)}
+.choice-door--company:hover,.choice-door--company:focus-visible{transform:translateY(-9px) rotate(1deg)}
+.choice-door__title h1{letter-spacing:-.03em;line-height:1.15}
+.choice-door__visual{box-shadow:4px 7px 8px #33241625}
+.v3-case__chapter-media,.v3-company__media-box{background:#e5d9c1;border-color:#a991683d}
+.v3-case__links a{transition:background .2s,transform .2s}
+.v3-case__links a:hover{transform:translateY(-2px);background:#e0cfac}
+.v3-case__links a:first-child:hover{background:#5f4029}
+.v3-company__list{gap:10px}
+.v3-company__list button{background:#f1e6cd url('../public/portfolio/scene/case-paper.webp') center/100% 100% no-repeat;border:0;box-shadow:none;filter:drop-shadow(2px 5px 4px #38241635);gap:8px;padding:18px 14px;opacity:.86;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s,filter .3s}
+.v3-company__list button>img{display:block;width:100%;height:58px;min-height:0;object-fit:contain;margin-top:auto;filter:drop-shadow(1px 3px 2px #38241625)}
+.v3-company__list .chapter-symbol{display:none}
+.v3-company__list button strong{font-size:14px}
+.v3-company__list button.is-active{background:transparent url('../public/portfolio/scene/case-paper.webp') center/100% 100% no-repeat;box-shadow:none;opacity:1;transform:translateY(-7px);filter:drop-shadow(3px 9px 5px #38241655);color:#843e28}
+.v3-company__list button:hover,.v3-company__list button:focus-visible{opacity:1;transform:translateY(-7px)}
+.v3-company__list button small{margin-top:0}
+.v3-company__media-tabs{scrollbar-width:none;padding-bottom:3px}
+.v3-company__media-tabs::-webkit-scrollbar{display:none}
+.v3-company__media-tabs button{background:#f0e5d0;border-color:#b6a28280}
+.v3-company__media-tabs button.is-active{border-color:#9b5335}
+@media(min-width:721px){
+ .desk-shell--about{height:100svh;overflow:clip}
+ .desk-shell--about .ref-lanyard__canvas{height:400%;top:-170%}
+ .desk-shell--about .ref-lanyard__static{width:88%;height:88%;left:6%;top:12%}
+}
+@media(min-width:1024px) and (min-height:650px){
+ .v3-company{padding-top:22px;padding-bottom:22px;margin-bottom:12px}
+ .v3-case{padding-top:16px;padding-bottom:16px;margin-bottom:12px}
+ .v3-case__hero{height:clamp(225px,27svh,300px);padding:6px 0 12px}
+ .v3-case__copy h1{margin:7px 0}
+ .v3-case__copy h2{margin-bottom:8px}
+ .v3-case__links{margin-top:12px}
+ .v3-case__story{padding-top:12px}
+ .v3-case__story-head{padding-bottom:10px}
+ .v3-case__chapter{height:clamp(225px,28svh,300px);min-height:225px}
+ .v3-case__pager{margin:8px 0}
+ .v3-case__pager button{width:28px;height:28px}
+ .v3-case__gallery{padding-top:8px}
+ .v3-case__gallery summary{padding:3px}
+ .v3-case__gallery:not([open]){border-top:0}
+ .v3-case__gallery:not([open]) summary{transform:translateY(-18px)}
+}
+@media(max-width:720px){
+ .desk-shell .v3-nav{height:65px;width:92vw;justify-content:space-between;gap:12px}
+ .desk-shell .v3-logo{font-size:19px;margin-right:0}
+ .desk-shell .v3-nav nav{gap:20px}
+ .desk-shell .v3-nav nav a{font-size:20px}
+ .desk-shell--about .ref-lanyard{position:relative;left:auto;top:auto;width:100%;height:330px}
+ .desk-shell--about .ref-lanyard__canvas{height:360%;top:-140%}
+ .desk-shell--about .ref-lanyard__static{width:78%;height:70%;left:11%;top:24%}
+ .ref-about__experience h2{font-size:23px}
+ .v3-company__list button{min-height:165px;padding:15px;gap:8px}
+ .v3-company__list button>img{height:45px}
+}
+@media(prefers-reduced-motion:reduce){.choice-door,.v3-company__list button{transition:none}}
