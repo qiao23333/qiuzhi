@@ -103,7 +103,7 @@ function PersonalCase({ project }: { project: PersonalProject }) {
   return <div className="v3-case" style={{ '--case-accent': project.accent } as CSSProperties}>
     <div className="v3-wrap">
       <Edge left={`03 / CASE STUDY — ${projectNumber}`} right={labels[project.slug]} />
-      <a className="v3-return" href={sitePath('/projects')}><ArrowLeft size={17} /> 所有作品</a>
+      <a className="v3-return" href={sitePath('/projects#personal')}><ArrowLeft size={17} /> 个人项目</a>
       <div className="v3-case__hero">
         <div className="v3-case__copy"><span>PERSONAL PROJECT / {projectNumber}</span><h1>{project.name}<i>.</i></h1><h2>{project.subtitle}</h2><p>{summaries[project.slug]}</p><div className="v3-case__links">{project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<ExternalLink size={15} /></a>)}</div><div className="v3-case__scroll"><ArrowDown size={16} /> 向下看项目过程</div></div>
         <button className="v3-case__hero-image" onClick={() => setZoom(project.image)} aria-label={`放大查看${project.name}界面`}><img src={project.image} alt={project.imageAlt} /><span>界面截图 <ArrowUpRight size={13}/></span></button>
@@ -158,3 +158,4 @@ export default function EditorialPortfolio({ view, effects = true }: { view: Edi
   const project = personalProjects.find((item) => item.slug === view);
   return <div className={`v3-shell desk-shell desk-shell--${view}`}><div className="desk-backdrop" aria-hidden="true"/><Nav view={view} /><main className="v3-main" key={view}>{view === 'about' ? <About effects={effects} /> : view === 'projects' ? <Work /> : view === 'aoda' ? <CompanyCase /> : view === 'contact' ? <DeskContact /> : project ? <PersonalCase project={project} /> : <About effects={effects} />}</main></div>;
 }
+

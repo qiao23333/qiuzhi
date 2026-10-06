@@ -42,6 +42,7 @@ export default function Lanyard({
   lanyardWidth = 0.7
 }) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const draggingRef = useRef(false);
 
   useEffect(() => {
     const surface = document.querySelector('.desk-shell--about');
@@ -59,6 +60,13 @@ export default function Lanyard({
         events={(state) => ({
           ...createEvents(state),
           compute: (event, current) => {
+            // DOM controls should not compete with the foreground badge.
+            // Continue to raycast during an active drag, even over navigation.
+            if (!draggingRef.current && event.target?.closest?.('a, button, nav')) {
+              current.pointer.set(100, 100);
+              current.raycaster.setFromCamera(current.pointer, current.camera);
+              return;
+            }
             const rect = current.gl.domElement.getBoundingClientRect();
             current.pointer.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
             current.raycaster.setFromCamera(current.pointer, current.camera);
@@ -72,6 +80,7 @@ export default function Lanyard({
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
           <Band
+            draggingRef={draggingRef}
             onReady={onReady}
             isMobile={isMobile}
             frontImage={frontImage}
@@ -116,6 +125,7 @@ export default function Lanyard({
   );
 }
 function Band({
+  draggingRef,
   onReady,
   maxSpeed = 50,
   minSpeed = 0,
@@ -126,7 +136,8 @@ function Band({
   lanyardImage = null,
   lanyardWidth = 1
 }) {
-  const renderedFrames = useRef(0);
+  const renderedSeconds = useRef(0);
+  const reportedReady = useRef(false);
   const band = useRef(),
     fixed = useRef(),
     j1 = useRef(),
@@ -203,6 +214,12 @@ function Band({
   );
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
+  const releaseDrag = (event) => {
+    draggingRef.current = false;
+    drag(false);
+    event.target.releasePointerCapture?.(event.pointerId);
+  };
+  useEffect(() => () => { draggingRef.current = false; }, [draggingRef]);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
@@ -220,7 +237,13 @@ function Band({
   }, [hovered, dragged]);
 
   useFrame((state, delta) => {
-    if (++renderedFrames.current === 8) onReady?.();
+    // Let the original physics settle before replacing the loading artwork.
+    // Reporting after eight frames exposed the initial sideways fall on load.
+    renderedSeconds.current += Math.min(delta, 0.05);
+    if (!reportedReady.current && renderedSeconds.current >= 0.85) {
+      reportedReady.current = true;
+      onReady?.();
+    }
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
@@ -273,8 +296,10 @@ function Band({
             position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
-            onPointerUp={e => (e.target.releasePointerCapture(e.pointerId), drag(false))}
+            onPointerUp={releaseDrag}
+            onPointerCancel={releaseDrag}
             onPointerDown={e => (
+              draggingRef.current = true,
               e.target.setPointerCapture(e.pointerId),
               drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())))
             )}

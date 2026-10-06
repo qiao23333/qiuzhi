@@ -1,3 +1,30 @@
+## Verified follow-up — 2026-10-06
+
+final result: passed for the About / Work repairs in this iteration
+
+User authorized independent-browser QA after the in-app connection failed. Restarted the stopped preview server, then captured current renders in Chromium. At 1440×900, About and Work both have matching page/viewport dimensions with no overflow or missing images. At 390×844, both pages have no horizontal overflow and readable vertical flow. Compact SnapSort remains 1280×720 without extra page scroll.
+
+Findings repaired from fresh evidence: negative cover image layering produced translucent-looking Work folders; moved photographs to an explicit local layer behind text. Mobile badge clipping exposed a hard strap cutoff; moved the badge above its heading, removed its clip and shifted the anchor clear of navigation. Removed the redundant desktop overview label obscured by the lamp.
+
+Interactions checked: badge hover uses grab; actual drag moves the card across the spread and releases back to rest; Work navigation remains clickable. Personal selection, detail entry, return to #personal and back through detail/list/A-B all passed. No page exceptions or failed asset responses were recorded. Source models, UVs, supplied textures and physics retained.
+
+Evidence: `_inspect/oct06-about.png`, `oct06-drag.png`, `oct06-work.png`, `oct06-personal.png`, `oct06-about-mobile.png`, `oct06-work-mobile.png`. TypeScript and final production build passed. This supersedes the pending browser-validation status below. Existing Contact and intro artwork unchanged in this iteration; no claim of new visual QA for them.
+## Work return flow and badge handoff — 2026-10-06
+
+Status: TypeScript and production build passed; interactive visual checks pending.
+
+- Badge loading artwork now crossfades with the settled WebGL frame instead of disappearing before the canvas finishes fading in. Drag cancellation resets the drag flag; navigation controls are excluded from badge raycasting when no drag is active. Physics, camera, model and provided textures unchanged.
+- A/B entrance selection is now represented by a real `#personal` link. App navigation notifies the overview of same-route hash changes. Personal detail pages return directly to the three-project list; company details still return to the A/B choice.
+- SnapSort has a wider, more prominent slot in the desktop personal list. Image frames remain contained and use viewport-aware heights. Added keyboard focus treatment and kept reduced-motion preferences.
+- Current browser attempts: inventory returned the local About tab, but reading it timed out; subsequent browser connections reported unavailable. No current rendered screenshot or interactive test result is claimed. Approval requested for independent-browser QA under the Product Design browser rule. Not deployed.
+## Badge proportions and Work covers — 2026-10-05 follow-up
+
+Status: implementation and build checked; current visual QA blocked.
+
+- Reduced the oversized desktop badge presentation, aligned the loading artwork to the revised scale, added a soft paper-facing shadow. Retained model, supplied textures, joints, gravity, camera and drag physics. Delayed ready notification until 0.85 seconds of frames so the initial physics fall is not exposed as the loading artwork disappears.
+- Work retains A/B selection, with a darker personal folder and lighter company folder. Photographic folder dimensions remain 1122:1402; removed forced grid-track stretching. Each entrance shows three corresponding real previews, with contained images, small hover spread and keyboard focus. Company previews represent content, brand and CRM, rather than only the brochure.
+- Personal project selection reuses paper art and a short reduced-motion-aware entrance.
+- TypeScript and production build passed. Browser capture could not start: both cua_repl and node_repl report a missing kernel asset path. No fresh screenshot is available and no claim of visual approval is made. Previous screenshots in sections below describe the previous published revision.
 ## Navigation and badge refinement — 2026-10-05
 
 final result: passed for the repairs below
@@ -65,4 +92,7 @@ Visual direction: approved warm desk, paper binder/folders, red booth and mailbo
 - The WebGL badge remains a large lazy-loaded dependency; static art is the loading / reduced-motion / error fallback.
 - AI workflow evidence still lacks a complete before/after operation demo. Existing material and its stated limits are preserved.
 - This is a verified repair of layout and interaction defects, not a claim that every creative detail is final.
+
+
+
 
