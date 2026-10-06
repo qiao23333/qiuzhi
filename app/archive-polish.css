@@ -155,3 +155,29 @@
 }
 @media(min-width:721px){.choice-work__head{justify-content:flex-end}.choice-work__head>span:first-child{display:none}}
 @media(max-width:720px){.desk-shell--about .ref-lanyard{left:-10%}}
+/* Match the printed face to the source art; use a common desktop stage. */
+@media(min-width:1024px) and (min-height:650px){
+ .ref-about{min-height:calc(100svh - 76px)}
+ .v3-case,.v3-company{width:min(94vw,1800px)}
+ .v3-case{min-height:calc(100svh - 112px);padding-inline:clamp(30px,3.1vw,60px)}
+ .v3-case__hero{height:clamp(225px,calc((100svh - 270px)*.48),390px)}
+ .v3-case__chapter{height:clamp(225px,calc((100svh - 270px)*.52),420px)}
+ .v3-case__copy h1{font-size:clamp(42px,5vw,92px)}
+ .v3-case__copy h2{font-size:clamp(19px,1.6vw,29px)}
+ .v3-case__copy p,.v3-case__chapter-copy p{font-size:clamp(14px,1.05vw,19px)}
+ .v3-case__chapter-copy h3{font-size:clamp(22px,1.8vw,34px)}
+ .v3-case__tabs button{font-size:clamp(14px,.9vw,17px)}
+ .v3-case__links a{font-size:clamp(12px,.8vw,15px)}
+}
+::view-transition-old(root),::view-transition-new(root){animation:none}
+::view-transition-old(portfolio-nav),::view-transition-old(portfolio-desk){display:none}
+::view-transition-new(portfolio-nav),::view-transition-new(portfolio-desk){animation:none}
+::view-transition-group(portfolio-content){animation-duration:360ms;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(portfolio-content){animation:archive-page-out 180ms ease-out both;mix-blend-mode:normal}
+::view-transition-new(portfolio-content){animation:archive-page-in 360ms cubic-bezier(.22,1,.36,1) both;mix-blend-mode:normal}
+@keyframes archive-page-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes archive-page-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+@media(min-width:1024px) and (min-height:650px){
+ .v3-case__gallery:not([open]) summary{transform:translateY(-38px);width:max-content;max-width:75%;font-size:clamp(13px,.85vw,16px)}
+}

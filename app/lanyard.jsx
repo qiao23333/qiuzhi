@@ -305,16 +305,13 @@ function Band({
             )}
           >
             <mesh geometry={nodes.card.geometry}>
-              <meshPhysicalMaterial
+              <meshBasicMaterial
                 map={cardMap}
                 map-anisotropy={16}
+                toneMapped={false}
                 alphaTest={0.45}
                 transparent={false}
                 depthWrite={true}
-                clearcoat={isMobile ? 0 : 0.35}
-                clearcoatRoughness={0.32}
-                roughness={0.68}
-                metalness={0.08}
               />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-map={connectorMetal} material-color="#ffffff" material-roughness={0.3} />

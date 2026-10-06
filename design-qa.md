@@ -87,6 +87,16 @@ Visual direction: approved warm desk, paper binder/folders, red booth and mailbo
 - Contact independent open/close, and mobile both-open phone/email bounds do not overlap.
 - Intro completes into About; actual 3D badge reaches its ready state, with static art displayed during loading.
 
+## 2026-10-07 — Red envelope and desktop proportion repair
+
+- Replaced envelope body and hinged flap with matching red textured assets. Visible body aspect ratio is approximately 1.78:1; transparent source margins are registered in CSS without stretching the source images.
+- Flap hinge shares the body's top edge; seal is centred on the flap tip. Reduced downward travel during extraction to keep the envelope inside the desktop frame.
+- Card print uses an unlit, non-tone-mapped material to preserve the supplied yellow; geometry and physics are unchanged. Loading readiness resets when replaying the intro.
+- Clicking the name at the top replays the intro. Page transitions retain the room background and animate the content separately.
+- Expanded desktop case stage and typography. Verified default chapter at 1280×720, 1440×900 and 1920×1080 with no page overflow or clipped copy; expanded galleries still scroll intentionally.
+- Verified natural intro completion and replay, portrait intro, asset loading and browser exceptions (none). TypeScript and production build pass.
+- Intro uses layered photographic textures and a frame-driven plane hinge; it is not a full 3D envelope simulation.
+
 ## Limits
 - Phone landscape uses readable scrolling rather than compressing the full case into tiny text.
 - The WebGL badge remains a large lazy-loaded dependency; static art is the loading / reduced-motion / error fallback.

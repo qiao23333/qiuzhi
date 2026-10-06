@@ -26,7 +26,7 @@ function App() {
   const [route,setRoute] = useState(path);
   useEffect(() => {
     const update=()=>{setRoute(currentRoute());window.scrollTo(0,0);window.dispatchEvent(new Event('portfolio:navigate'));};
-    const navigate=(e: MouseEvent)=>{const a=(e.target as Element).closest('a');if(!a || a.target || a.hasAttribute('download') || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button!==0)return;const u=new URL(a.href);if(u.origin!==location.origin || !u.pathname.startsWith(sitePath('/')))return;e.preventDefault();const apply=()=>{history.pushState(null,'',u.pathname+u.search+u.hash);update();};if('startViewTransition' in document && !matchMedia('(prefers-reduced-motion: reduce)').matches)(document as any).startViewTransition(apply);else apply();};
+    const navigate=(e: MouseEvent)=>{const a=(e.target as Element).closest('a');if(!a || a.target || a.hasAttribute('download') || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button!==0)return;const u=new URL(a.href);if(u.origin!==location.origin || !u.pathname.startsWith(sitePath('/')))return;e.preventDefault();const apply=()=>{history.pushState(null,'',u.pathname+u.search+u.hash);if(u.pathname===sitePath('/')){setIntro(true);setEffects(false);}update();};if('startViewTransition' in document && !matchMedia('(prefers-reduced-motion: reduce)').matches)(document as any).startViewTransition(apply);else apply();};
     document.addEventListener('click',navigate);window.addEventListener('popstate',update);return()=>{document.removeEventListener('click',navigate);window.removeEventListener('popstate',update);};
   }, []);
   const reveal = useCallback(() => setEffects(true), []);
@@ -37,3 +37,4 @@ function App() {
 const root = import.meta.hot?.data.root ?? createRoot(document.getElementById('root')!);
 if (import.meta.hot) import.meta.hot.data.root = root;
 root.render(<App />);
+

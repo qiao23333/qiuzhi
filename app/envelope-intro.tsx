@@ -9,7 +9,7 @@ export default function EnvelopeIntro({ onDone, onReveal }: { onDone: () => void
   const [loaded,setLoaded]=useState(false);
   useEffect(()=>{
     let cancelled=false;
-    const assets=['/portfolio/scene/desk.webp','/portfolio/scene/envelope-body.webp','/portfolio/scene/envelope-flap.webp','/portfolio/scene/case-paper.webp','/portfolio/scene/binder.webp','/portfolio/letter-seal.webp'];
+    const assets=['/portfolio/scene/desk.webp','/portfolio/scene/envelope-v2-body.png','/portfolio/scene/envelope-v2-flap.png','/portfolio/scene/case-paper.webp','/portfolio/scene/binder.webp','/portfolio/letter-seal.webp'];
     Promise.allSettled(assets.map(src=>{const image=new Image();image.src=sitePath(src);return image.decode();})).then(()=>{if(!cancelled)setLoaded(true);});
     return()=>{cancelled=true;};
   },[]);
@@ -47,3 +47,4 @@ export default function EnvelopeIntro({ onDone, onReveal }: { onDone: () => void
     <button className="film-intro__skip" onClick={onDone}>跳过 <span>↗</span></button>
   </main>;
 }
+

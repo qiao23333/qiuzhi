@@ -14,6 +14,7 @@ export default function LanyardBadge({ active = true }: { active?: boolean }) {
   const [reduced, setReduced] = useState(false);
   const [ready,setReady]=useState(false);
   const onReady=useCallback(()=>setReady(true),[]);
+  useEffect(()=>{if(!active || reduced)setReady(false);},[active,reduced]);
   useEffect(()=>{loadLanyard().catch(()=>{});},[]);
   useEffect(() => {
     const query = matchMedia('(prefers-reduced-motion: reduce)');
