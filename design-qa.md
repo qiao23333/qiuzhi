@@ -97,6 +97,16 @@ Visual direction: approved warm desk, paper binder/folders, red booth and mailbo
 - Verified natural intro completion and replay, portrait intro, asset loading and browser exceptions (none). TypeScript and production build pass.
 - Intro uses layered photographic textures and a frame-driven plane hinge; it is not a full 3D envelope simulation.
 
+## 2026-10-07 — Tabletop lift and project composition
+
+- Intro now begins with the envelope resting at a 68-degree tabletop angle, then lifts before the existing flap opening and paper extraction. Added a floor shadow that softens during the lift and raised the open-envelope position by 8% of viewport height.
+- Extended the frame-driven sequence to 266 frames while retaining the final sheet-to-About registration. Verified resting, lifted, open, extracted and handoff states, natural completion and replay.
+- Personal project mounts now share an image area and inset padding, with SnapSort given the larger card. A/B remains a separate choice screen.
+- Case chapter navigation is narrower and material previews receive more space. Return links sit inside the visible paper edge.
+- Company detail is now two columns: summary and description on the left, larger evidence viewer on the right. Five theme selectors, material filters, image zoom and native video remain available.
+- Fixed noisy mobile paper background without repeating a framed sheet behind content. Default desktop stages fit 1280×720, 1440×900 and 1920×1080; phone layouts scroll.
+- Brand selection, image zoom/Escape and video playback checked. No browser exceptions. TypeScript and production build pass.
+
 ## Limits
 - Phone landscape uses readable scrolling rather than compressing the full case into tiny text.
 - The WebGL badge remains a large lazy-loaded dependency; static art is the loading / reduced-motion / error fallback.
