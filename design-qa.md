@@ -107,6 +107,16 @@ Visual direction: approved warm desk, paper binder/folders, red booth and mailbo
 - Fixed noisy mobile paper background without repeating a framed sheet behind content. Default desktop stages fit 1280×720, 1440×900 and 1920×1080; phone layouts scroll.
 - Brand selection, image zoom/Escape and video playback checked. No browser exceptions. TypeScript and production build pass.
 
+## 2026-10-07 — Detail-page hierarchy and material navigation
+
+- Personal project hero uses a restrained screen surround that derives its aspect ratio from the loaded source image, preserving the full interface.
+- Chapter count and previous/next controls are grouped above the story. Chapter selectors use quieter dividers and an active marker; content changes animate briefly, respecting reduced motion.
+- Only offer full-description expansion when the excerpt is actually shorter than the source. No project claims or evidence were rewritten.
+- Company evidence shows the selected material before the thumbnail strip. Added previous/next material controls scoped to the active filter and a matching filtered count.
+- Increased footer inset so controls remain inside the visible paper edge.
+- Checked default desktop stages at 1280×720, 1440×900, 1920×1080 and scrolling phone layouts at 390×844 / 844×390. No horizontal overflow.
+- Checked all three personal cases: chapter changes, full description, hero zoom, gallery loading (9 / 12 / 9). Checked company filtered video navigation, brand-image zoom and video playback. No browser exceptions or failed HTTP asset responses in interaction checks. TypeScript and production build pass.
+
 ## Limits
 - Phone landscape uses readable scrolling rather than compressing the full case into tiny text.
 - The WebGL badge remains a large lazy-loaded dependency; static art is the loading / reduced-motion / error fallback.
